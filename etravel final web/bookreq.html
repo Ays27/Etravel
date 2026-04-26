@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Etravel | Booking</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+body {
+    background: #0b0b0b;
+    color: #fff;
+    min-height: 100vh;
+}
+
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: #121212;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2ee6e6;
+    text-decoration: none;
+}
+
+.header .logo .span {
+    color: #fff;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #2ee6e6;
+}
+
+.header .btn {
+    padding: 10px 20px;
+    border: 2px solid #2ee6e6;
+    border-radius: 40px;
+    color: #2ee6e6;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.header .btn:hover {
+    background: #2ee6e6;
+    color: #000;
+}
+
+#menu-btn {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+.booking-wrapper {
+    max-width: 800px;
+    margin: 120px auto 80px;
+    padding: 40px;
+    background: #121212;
+    border-radius: 22px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+
+.booking-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.booking-title h1 {
+    color: #2ee6e6;
+    font-size: 36px;
+}
+
+.booking-title p {
+    margin-top: 10px;
+    color: #aaa;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+input, textarea, select {
+    background: #0b0b0b;
+    border: 2px solid #222;
+    border-radius: 14px;
+    padding: 15px;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s;
+    width: 100%;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #2ee6e6;
+}
+
+textarea {
+    resize: none;
+    height: 130px;
+}
+
+
+.error {
+    color: #ff6b6b;
+    font-size: 14px;
+    display: none;
+}
+
+
+button, .footer .btn {
+    margin-top: 10px;
+    padding: 16px;
+    border-radius: 40px;
+    border: 2px solid #2ee6e6;
+    background: transparent;
+    color: #2ee6e6;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover, .footer .btn:hover {
+    background: #2ee6e6;
+    color: #000;
+    box-shadow: 0 0 25px rgba(46,230,230,0.6);
+}
+
+
+.footer {
+    background: #121212;
+    padding: 50px 20px;
+    margin-top: 50px;
+}
+
+.footer .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.footer .box {
+    flex: 1 1 200px;
+}
+
+.footer .box h3 {
+    color: #2ee6e6;
+    margin-bottom: 15px;
+}
+
+.footer .box p, .footer .box a {
+    color: #aaa;
+    display: block;
+    margin-bottom: 8px;
+    text-decoration: none;
+}
+
+.footer .box a:hover {
+    color: #2ee6e6;
+}
+
+.footer .box input.email {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #555;
+    width: 70%;
+    margin-bottom: 10px;
+    background: #0b0b0b;
+    color: #fff;
+}
+
+.footer .box form .btn {
+    width: 28%;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .header {
+        flex-wrap: wrap;
+        padding: 10px 20px;
+    }
+
+    #menu-btn {
+        display: block;
+    }
+
+    .navbar {
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    .navbar a {
+        margin: 10px 0;
+    }
+
+    .navbar.active {
+        display: flex;
+    }
+
+    .footer .box-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .booking-wrapper {
+        margin: 80px 15px 50px;
+        padding: 25px;
+    }
+
+    .booking-title h1 {
+        font-size: 28px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER / NAVBAR -->
+<header class="header">
+    <div id="menu-btn" class="fas fa-bars"></div>
+    <a data-aos="zoom-in-left" data-aos-delay="150" href="#" class="logo"> <span class="span">E</span>travel </a>
+
+    <nav class="navbar">
+        <a data-aos="zoom-in-left" data-aos-delay="300" href="index.html">Home</a>
+        <a data-aos="zoom-in-left" data-aos-delay="600" href="gallery.html">Destinations</a>
+        <a data-aos="zoom-in-left" data-aos-delay="900" href="packages.html">Packages</a>
+        <a data-aos="zoom-in-left" data-aos-delay="750" href="bookreq.html">BookNow</a>
+       
+    </nav>
+
+    <a data-aos="zoom-in-left" data-aos-delay="1300" href="login.html" class="btn">Login</a>
+</header>
+
+<!-- BOOKING FORM -->
+<div class="booking-wrapper">
+
+    <div class="booking-title">
+        <h1>Book Your Trip</h1>
+
+    </div>
+
+    <form id="bookingForm" novalidate>
+
+        <div>
+            <input type="text" id="fullName" placeholder="Full Name">
+            <div class="error" id="nameError">Please enter your full name</div>
+        </div>
+
+        <div>
+            <input type="email" id="email" placeholder="Email Address">
+            <div class="error" id="emailError">Please enter a valid email</div>
+        </div>
+
+        <div>
+            <input type="tel" id="phone" placeholder="Phone Number">
+            <div class="error" id="phoneError">Please enter a valid phone number</div>
+        </div>
+
+        <div>
+            <select id="destination">
+                <option value="">Select a Destination</option>
+                <option value="Lake Tana">Lake Tana</option>
+                <option value="Axum">Axum</option>
+                <option value="Lalibela">Lalibela</option>
+                <option value="Bale Mountains">Bale Mountains</option>
+                <option value="Semien Mountains">Semien Mountains</option>
+                <option value="Erta Ale Volcano">Erta Ale Volcano</option>
+            </select>
+            <div class="error" id="destinationError">Please select a destination</div>
+        </div>
+
+        <div>
+            <textarea id="message" placeholder="Your message (optional)"></textarea>
+        </div>
+
+        <button type="button" id="confirmBtn">Confirm Booking</button>
+
+    </form>
+
+</div>
+
+<!-- FOOTER -->
+<section class="footer">
+    <div class="box-container">
+
+        <div class="box" data-aos="fade-up" data-aos-delay="150">
+            <h3>Members</h3>
+            <div class="members">
+                <p>1. Aynalem Sitotaw</p>
+                <p>2. Bereket Teferi</p>
+                <p>3. Eyob Wakuma</p>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up" data-aos-delay="300">
+            <h3>Quick Links</h3>
+            <a href="index.html" class="links">Home</a>
+            <a href="about.html" class="links">About</a>
+            <a href="gallery.html" class="links">Gallery</a>
+            <a href="services.html" class="links">Services</a>
+            <a href="gallery.html" class="links">Destinations</a>
+            <a href="packages.html" class="links">Packages</a>
+            <a href="bookreq.html" class="links">BookNow</a>
+            <a href="vehicle.html" class="links">Rent</a>
+        </div>
+
+        <div class="box" data-aos="fade-up" data-aos-delay="450">
+            <h3>Contact Info</h3>
+            <p>Bahir Dar, Ethiopia</p>
+            <p>+123-456-7890</p>
+            <p>Etravel@gmail.com</p>
+        </div>
+
+        <div class="box" data-aos="fade-up" data-aos-delay="600">
+            <h3>Newsletter</h3>
+            <p>Subscribe for latest updates</p>
+            <form action="">
+                <input type="email" placeholder="Enter your email" class="email">
+                <input type="submit" value="Subscribe" class="btn">
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<script>
+// MENU TOGGLE
+const menuBtn = document.getElementById('menu-btn');
+const navbar = document.querySelector('.navbar');
+menuBtn.addEventListener('click', () => {
+    navbar.classList.toggle('active');
+});
+
+// AUTO PACKAGE NAME FROM URL
+const params = new URLSearchParams(window.location.search);
+const packageName = params.get('package');
+if (packageName) {
+    const cleanName = packageName.replace(/-/g, ' ');
+    document.getElementById('packageTitle').innerText = "Package: " + cleanName;
+}
+
+// BOOKING FORM VALIDATION + ALERT + REDIRECT
+document.getElementById('confirmBtn').addEventListener('click', function() {
+    let valid = true;
+
+    const name = document.getElementById('fullName');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const destination = document.getElementById('destination');
+
+    if (name.value.trim().length < 3) { showError('nameError'); valid = false; } else hideError('nameError');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.value.trim())) { showError('emailError'); valid = false; } else hideError('emailError');
+    if (phone.value.trim().length < 7) { showError('phoneError'); valid = false; } else hideError('phoneError');
+    if (destination.value === "") { showError('destinationError'); valid = false; } else hideError('destinationError');
+
+    if (valid) {
+        alert("Booking submitted successfully! We'll contact you soon.");
+        window.location.href = "index.html";
+    }
+});
+
+function showError(id) { document.getElementById(id).style.display = "block"; }
+function hideError(id) { document.getElementById(id).style.display = "none"; }
+
+// UPDATE PACKAGE TITLE ON DROPDOWN SELECT
+document.getElementById('destination').addEventListener('change', function() {
+    const selected = this.value;
+    if (selected) {
+        document.getElementById('packageTitle').innerText = "Package: " + selected;
+    } else {
+        document.getElementById('packageTitle').innerText = "Package: —";
+    }
+});
+</script>
+
+</body>
+</html>

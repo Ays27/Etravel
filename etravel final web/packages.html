@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Etravel | Tour Packages</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #0b0b0b;
+    color: #fff;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+}
+
+.logo {
+    font-size: 2.5rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+.logo .span {
+    color: #2ee6e6;
+}
+
+.navbar {
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar a {
+    color: #aaa;
+    font-size: 1.6rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #2ee6e6;
+}
+
+.btn {
+    padding: 0.8rem 2rem;
+    border: 2px solid #2ee6e6;
+    border-radius: 50px;
+    color: #2ee6e6;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #2ee6e6;
+    color: #000;
+}
+
+#menu-btn {
+    display: none;
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.page-title {
+    text-align: center;
+    padding: 120px 20px 30px;
+}
+
+.page-title h1 {
+    font-size: 42px;
+    color: #2ee6e6;
+}
+
+.page-title p {
+    margin-top: 10px;
+    color: #aaa;
+    font-size: 16px;
+}
+
+.packages {
+    padding: 40px;
+    column-gap: 30px;
+}
+
+@media (min-width: 1024px) { .packages { column-count: 3; } }
+@media (max-width: 1023px) and (min-width: 600px) { .packages { column-count: 2; } }
+@media (max-width: 599px) { .packages { column-count: 1; padding: 20px; } }
+
+.package {
+    background: #121212;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    break-inside: avoid;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    transition: transform 0.35s ease;
+}
+
+.package:hover {
+    transform: translateY(-8px);
+}
+
+.package img {
+    width: 100%;
+    display: block;
+}
+
+.info {
+    padding: 22px;
+}
+
+.tag {
+    display: inline-block;
+    background: rgba(46,230,230,0.15);
+    color: #2ee6e6;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.info h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.info p {
+    font-size: 15px;
+    color: #ccc;
+    line-height: 1.7;
+}
+
+.meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.book-btn {
+    margin-top: 22px;
+    display: block;
+    text-align: center;
+    padding: 14px;
+    border-radius: 40px;
+    border: 2px solid #2ee6e6;
+    color: #2ee6e6;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.book-btn:hover {
+    background: #2ee6e6;
+    color: #000;
+    box-shadow: 0 0 25px rgba(46,230,230,0.7);
+}
+
+@media (max-width: 768px) {
+    #menu-btn { display: block; }
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #121212;
+        flex-direction: column;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.4s ease;
+    }
+    .navbar.active { max-height: 500px; }
+    .navbar a {
+        margin: 1.5rem 0;
+        font-size: 1.8rem;
+        text-align: center;
+    }
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: #121212;
+    padding: 4rem 9%;
+    color: #aaa;
+}
+
+.footer .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer .box h3 {
+    font-size: 2rem;
+    color: #2ee6e6;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.footer .box p,
+.footer .box .links {
+    font-size: 1.5rem;
+    color: #aaa;
+    margin: 0.6rem 0;
+    display: block;
+    text-decoration: none;
+}
+
+.footer .box .links:hover {
+    color: #2ee6e6;
+    padding-left: 0.5rem;
+}
+
+.footer .box form {
+    margin-top: 1rem;
+}
+
+.footer .box input.email {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border-radius: 5rem;
+    border: 0.2rem solid #2ee6e6;
+    background: none;
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.footer .box input.btn {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 5rem;
+    border: 0.2rem solid #2ee6e6;
+    background: #2ee6e6;
+    color: #121212;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.footer .box input.btn:hover {
+    background: none;
+    color: #2ee6e6;
+    box-shadow: 0 0 15px rgba(46, 230, 230, 0.5);
+}
+
+.footer .members p {
+    margin: 0.5rem 0;
+}
+
+.footer .credit {
+    text-align: center;
+    padding-top: 2rem;
+    font-size: 1.5rem;
+    color: #aaa;
+}
+
+.footer .credit span {
+    color: #2ee6e6;
+}
+
+@media (max-width: 768px) {
+    .footer { padding: 3rem 2rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div id="menu-btn">&#9776;</div>
+    <a href="#" class="logo"><span class="span">E</span>travel</a>
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Destinations</a>
+        <a href="packages.html">Packages</a>
+        <a href="bookreq.html">BookNow</a>
+    </nav>
+    <a href="login.html" class="btn">Login</a>
+</header>
+
+<div class="page-title">
+    <h1>Tour Packages</h1>
+    <p>Hand-picked experiences across Ethiopia</p>
+</div>
+
+<div class="packages">
+    <div class="package">
+        <img src="gallery/laketanaforp.jpg" alt="Lake Tana">
+        <div class="info">
+            <span class="tag">Nature & History</span>
+            <h3>Lake Tana</h3>
+            <p>Ethiopia’s largest lake and the source of the Blue Nile, surrounded by ancient island monasteries.</p>
+            <div class="meta">
+                <span>⏱ 3 Days</span>
+                <span>30,000 birr</span>
+            </div>
+            <a href="bookreq.html" class="book-btn">Book Now</a>
+        </div>
+    </div>
+
+    <div class="package">
+        <img src="gallery/ertaleforp.jpg" alt="Erta Ale">
+        <div class="info">
+            <span class="tag">Adventure</span>
+            <h3>Erta Ale Volcano</h3>
+            <p>An active volcano in the Danakil Depression with a continuously bubbling lava lake.</p>
+            <div class="meta">
+                <span>⏱ 4 Days</span>
+                <span>54,200 birr</span>
+            </div>
+            <a href="bookreq.html" class="book-btn">Book Now</a>
+        </div>
+    </div>
+
+    <div class="package">
+        <img src="gallery/lalibelaforp.jpg" alt="Lalibela">
+        <div class="info">
+            <span class="tag">Culture & Faith</span>
+            <h3>Lalibela</h3>
+            <p>Rock-hewn churches carved from stone, often called the “New Jerusalem”.</p>
+            <div class="meta">
+                <span>⏱ 3 Days</span>
+                <span>40,000 birr</span>
+            </div>
+            <a href="bookreq.html" class="book-btn">Book Now</a>
+        </div>
+    </div>
+
+    <div class="package">
+        <img src="gallery/semenforp.jpg" alt="Simien Mountains">
+        <div class="info">
+            <span class="tag">Wildlife</span>
+            <h3>Simien Mountains</h3>
+            <p>Jaw-dropping escarpments and wildlife including gelada baboons and Walia ibex.</p>
+            <div class="meta">
+                <span>⏱ 5 Days</span>
+                <span>41,000 birr</span>
+            </div>
+            <a href="bookreq.html" class="book-btn">Book Now</a>
+        </div>
+    </div>
+
+    <div class="package">
+        <img src="gallery/baleforp.jpg" alt="Bale Mountains">
+        <div class="info">
+            <span class="tag">Nature</span>
+            <h3>Bale Mountains</h3>
+            <p>High-altitude scenery and rare wildlife including the Ethiopian wolf.</p>
+            <div class="meta">
+                <span>⏱ 4 Days</span>
+                <span>49,200 birr</span>
+            </div>
+            <a href="bookreq.html" class="book-btn">Book Now</a>
+        </div>
+    </div>
+
+    <div class="package">
+        <img src="gallery/axumforp.jpg" alt="Axum">
+        <div class="info">
+            <span class="tag">Ancient History</span>
+            <h3>Axum</h3>
+            <p>Home of towering obelisks and the legendary Ark of the Covenant.</p>
+            <div class="meta">
+                <span>⏱ 3 Days</span>
+                <span>52,500 birr</span>
+            </div>
+            <a href="bookreq.html" class="book-btn">Book Now</a>
+        </div>
+    </div>
+</div>
+
+<section class="footer">
+    <div class="box-container">
+        <div class="box">
+            <h3>Members</h3>
+            <div class="members">
+                <p>1.Aynalem Sitotaw</p>
+                <p>2.Bereket Teferi</p>
+                <p>3.Eyob Wakuma</p>
+            </div>
+        </div>
+
+        <div class="box">
+            <h3>Quick Links</h3>
+            <a href="index.html" class="links">Home</a>
+            <a href="about.html" class="links">About</a>
+            <a href="gallery.html" class="links">Gallery</a>
+            <a href="services.html" class="links">Services</a>
+            <a href="gallery.html" class="links">Destinations</a>
+            <a href="packages.html" class="links">Packages</a>
+            <a href="bookreq.html" class="links">BookNow</a>
+        </div>
+
+        <div class="box">
+            <h3>Contact Info</h3>
+            <p>Bahir Dar, Ethiopia</p>
+            <p>+123-456-7890</p>
+            <p>Etravel@gmail.com</p>
+        </div>
+
+        <div class="box">
+            <h3>Newsletter</h3>
+            <p>Subscribe for latest updates</p>
+            <form action="">
+                <input type="email" placeholder="Enter your email" class="email">
+                <input type="submit" value="Subscribe" class="btn">
+            </form>
+        </div>
+    </div>
+    <div class="credit">Created by <span>Etravel Team</span></div>
+</section>
+
+<script>
+const menuBtn = document.getElementById('menu-btn');
+const navbar = document.querySelector('.navbar');
+menuBtn.addEventListener('click', () => {
+    navbar.classList.toggle('active');
+});
+</script>
+
+</body>
+</html>

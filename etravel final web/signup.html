@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="Signup.css">
+  <title></title>
+</head>
+<body>
+  <header class="header">
+  
+    <div id="menu-btn" class="fas fa-bars"></div>
+  
+    <a data-aos="zoom-in-left" data-aos-delay="150" href="#" class="logo"> <span class="span">E</span>travel </a>
+  
+    <nav class="navbar">
+      <a data-aos="zoom-in-left" data-aos-delay="300" href="index.html">Home</a>
+      <a data-aos="zoom-in-left" data-aos-delay="450" href="about.html">About</a>
+      <a data-aos="zoom-in-left" data-aos-delay="600" href="gallery.html">Gallery</a>
+      <a data-aos="zoom-in-left" data-aos-delay="750" href="services.html">services</a>
+      <a data-aos="zoom-in-left" data-aos-delay="900" href="login.html">Sign in</a>
+      <a data-aos="zoom-in-left" data-aos-delay="1050" href="SignUp.html">Sign Up</a>
+     <a data-aos="zoom-in-left" data-aos-delay="1200" href="ticket.html">Ticket</a>
+     <a data-aos="zoom-in-left" data-aos-delay="1200" href="vehicle.html">Vehicle</a>
+    
+  </nav>
+    <a data-aos="zoom-in-left" data-aos-delay="1300" href="Services.html" class="btn">book now</a>
+  
+  </header>
+<section class="sign">
+<div class="container" id="container">
+<div class="form-container sign-up-container">
+
+<form action="#">
+	<h1>Create Account</h1>
+
+	<input type="text" name="name" placeholder="Name">
+	<input type="email" name="email" placeholder="Email">
+	<input type="password" name="password" placeholder="Password">
+	<button class="btn">SignUp</button>
+</form>
+</div>
+<div class="form-container sign-in-container">
+	<form action="#">
+		<h1>Sign In</h1>
+		
+	<input type="email" name="email" placeholder="Email">
+	<input type="password" name="password" placeholder="Password">
+	<a href="#">Forgot Your Password</a>
+
+	<button class="btn" >Sign In</button>
+	</form>
+</div>
+<div class="overlay-container">
+	<div class="overlay">
+		<div class="overlay-panel overlay-left">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your details and start<br><br> journey <br> <br>with us</p>
+			<button class="btn" id="signIn">Sign Up</button>
+		</div>
+		<div class="overlay-panel overlay-right">
+	
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us <br> <br>please login with your<br><br> personal info</p>
+			<button class="btn" id="signUp">Sign in</button>
+		</div>
+	</div>
+</div>
+</div>
+</section>
+<section>
+  
+
+
+  <a href="index.html" class="btn">Visit Us</a>
+  </div>
+
+</section>
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box" data-aos="fade-up" data-aos-delay="150">
+            <a href="#" class="logo"><span class="span">E</span>travel </a>
+            <p>The country's breathtaking natural beauty, diverse culture, soulful people, delicious cuisine, and endemic wildlife are perfect for the traveler looking for different experiences.</p>
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+            </div>
+        </div>
+
+        <div class="box" data-aos="fade-up" data-aos-delay="300">
+            <h3>quick links</h3>
+            <a href="home.html" class="links"> home </a>
+            <a href="about.html" class="links">  about </a>
+            <a href="gallery.html" class="links">  gallery </a>
+            <a href="services.html" class="links">  services </a>
+             <a href="login.html" class="links">  Sign in </a>
+            <a href="signup.html" class="links"> Sign Up </a>
+            
+              
+           
+        </div>
+
+        <div class="box" data-aos="fade-up" data-aos-delay="450">
+            <h3>contact info</h3>
+            <p> Bahir  Dar, Ethiopia</p>
+            <p>  +123-456-7890 </p>
+            <p>  Etravel@gmail.com </p>
+            <p>  7:00am - 10:00pm </p>
+        </div>
+
+        
+
+    </div>
+
+</section>
+
+<div class="credit">created by <span>Etravel web design</span> | all rights reserved!</div>
+
+
+<script type="text/javascript">
+	const signUpButton = document.getElementById('signUp');
+	const signInButton = document.getElementById('signIn');
+	const container = document.getElementById('container');
+
+	signUpButton.addEventListener('click', () => {
+		container.classList.add("right-panel-active");
+	});
+	signInButton.addEventListener('click', () => {
+		container.classList.remove("right-panel-active");
+	});
+	
+</script>
+
+
+  
+  
+</body>
+
+</html>
